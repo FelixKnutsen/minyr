@@ -105,12 +105,7 @@ func Convert() error {
 		lineNo++
 	}
 
-	/*dataText := "Data er basert paa gyldig data (per 18.03.2023) (CC BY 4.0) fra Meteorologisk institutt (MET); endringen er gjort av Felix Knutsen,,,"
-	err = outputWriter.Write([]string{dataText})
-	if err != nil {
-		fmt.Println("Error writing data text to output file:", err)
 
-	}*/
 	dataText := `Data er basert paa gyldig data (per 18.03.2023) (CC BY 4.0) fra Meteorologisk institutt (MET); endringen er gjort av Felix Knutsen,,,`
 	err = outputWriter.Write([]string{dataText})
 	if err != nil {
@@ -120,70 +115,6 @@ func Convert() error {
 	return nil
 
 }
-
-/*func Average(unit string) (float64, error) {
-	var filename string
-	var tempColumn int
-	var delimiter rune
-
-	if unit == "c" {
-		filename = "yr/kjevik-temp-celsius-20220318-20230318.csv"
-		tempColumn = 3
-		delimiter = ';'
-	} else if unit == "f" {
-		filename = "yr/kjevik-temp-fahr-20220318-20230318.csv"
-		tempColumn = 3
-		delimiter = ','
-	} else {
-		return 0, fmt.Errorf("Ugyldig verdi: %s", unit)
-	}
-
-	file, err := os.Open(filename)
-	if err != nil {
-		return 0, err
-	}
-	defer file.Close()
-
-	reader := csv.NewReader(file)
-	reader.Comma = delimiter
-
-	var total float64
-	var count int
-
-	// Looper gjennom hver linje i CSV filen
-	for i := 1; ; i++ {
-		record, err := reader.Read()
-		if err == io.EOF {
-			break
-		}
-		if err != nil {
-			return 0, err
-		}
-
-		if i < 2 || i > 16755 {
-			// hopper over linjer utenfor rangen
-			continue
-		}
-
-		if len(record) <= tempColumn {
-			return 0, fmt.Errorf("Ugyldig data i filen %s", filename)
-		}
-
-		temp, err := strconv.ParseFloat(record[tempColumn], 64)
-		if err != nil {
-			return 0, err
-		}
-
-		total += temp
-		count++
-	}
-
-	if count == 0 {
-		return 0, fmt.Errorf("Ingen tempratur ble funnet i filen %s", filename)
-	}
-
-	return total / float64(count), nil
-}*/
 
 func Average(unit string) (float64, error) {
 	var filename string
@@ -197,7 +128,7 @@ func Average(unit string) (float64, error) {
 	} else if unit == "f" {
 		filename = "yr/kjevik-temp-fahr-20220318-20230318.csv"
 		tempColumn = 3
-		delimiter = ','
+		delimiter = ';'
 	} else {
 		return 0, fmt.Errorf("Ugyldig verdi: %s", unit)
 	}
