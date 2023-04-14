@@ -19,7 +19,7 @@ func main() {
 	}
 
 	// Viser brukeren en meny med valg
-	fmt.Println("Valg:")
+	fmt.Println("Velg:")
 	fmt.Println("  - 'convert' for å konvertere tempraturen fra Celsius til Fahrenheit")
 	fmt.Println("  - 'average' for å begregne gjennomsnitt tempratur for perioden")
 	fmt.Println("Skriv 'q' eller 'quit' for å avbryte.")
